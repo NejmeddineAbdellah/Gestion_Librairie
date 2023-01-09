@@ -1,5 +1,6 @@
 ﻿using Gestion_Librairie.Classes;
 using Gestion_Librairie.Connection;
+using Gestion_Librairie;
 using Guna.UI2.WinForms;
 using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI;
@@ -20,6 +21,7 @@ namespace Gestion_Librairie.G_form
             InitializeComponent();
         }
 
+       
         private void guna2PictureBox2_Click(object sender, System.EventArgs e)
         {
             this.Close();
@@ -42,10 +44,9 @@ namespace Gestion_Librairie.G_form
 
                     cnx.connexion();
                     cnx.cnxOpen();
-                    MySqlCommand cmd = new MySqlCommand("INSERT INTO categorie (code,libelle)" + "VALUES(@code,@libelle)", cnx.connMaster);
-                    cmd.Parameters.AddWithValue("@cin", categorie.Code);
-                    cmd.Parameters.AddWithValue("@nom", categorie.Libelle);
-
+                    MySqlCommand cmd = new MySqlCommand("INSERT INTO categorie (code,libelle) VALUES(@code,@libelle)", cnx.connMaster);
+                    cmd.Parameters.AddWithValue("@code", categorie.Code);
+                    cmd.Parameters.AddWithValue("@libelle", categorie.Libelle);
                     cmd.ExecuteNonQuery();
                     cnx.cnxClose();
                 }
@@ -54,6 +55,11 @@ namespace Gestion_Librairie.G_form
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void categorieforme_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

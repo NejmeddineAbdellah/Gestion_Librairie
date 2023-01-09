@@ -68,11 +68,6 @@ namespace Gestion_Librairie
             g_Users3.Hide();
         }
 
-        private void g_Users2_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
         {
             g_Dashboard3.Show();
@@ -82,9 +77,5 @@ namespace Gestion_Librairie
             g_Users3.Hide();
         }
 
-        private void g_Users3_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

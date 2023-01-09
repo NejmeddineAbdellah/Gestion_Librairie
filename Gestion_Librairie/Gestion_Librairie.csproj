@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Categorie.cs" />
+    <Compile Include="Classes\User.cs" />
     <Compile Include="Connection\Connexion.cs" />
     <Compile Include="Dashboard.cs">
       <SubType>Form</SubType>

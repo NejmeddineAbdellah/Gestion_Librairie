@@ -367,7 +367,6 @@
             this.g_Users3.Name = "g_Users3";
             this.g_Users3.Size = new System.Drawing.Size(957, 594);
             this.g_Users3.TabIndex = 4;
-            this.g_Users3.Load += new System.EventHandler(this.g_Users3_Load);
             // 
             // Dashboard
             // 
