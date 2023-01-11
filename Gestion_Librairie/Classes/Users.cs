@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace Gestion_Librairie.Classes
 {
-    internal class User
+    internal class Users
     {
         private int id;
         private string username;
         private string password;
-        private string email;
-        private string telephone;
-        private string role;
         private string nom;
         private string prenom;
+        private string role;
+        private string email;
+        private string telephone;
+     
+      
 
-        public User(string username, string password, string email, string telephone, string role, string nom, string prenom)
+        public Users(string username, string password, string email, string telephone, string role, string nom, string prenom)
         {
             this.username = username;
             this.password = password;

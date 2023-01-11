@@ -44,7 +44,7 @@ namespace Gestion_Librairie
             {
                 try
                 {
-                    User user = new User(txt_username.Text, txt_password.Text, txt_email.Text, txt_telephone.Text, cmb_role.Text, txt_nom.Text, txt_prenom.Text);
+                    Users user = new Users(txt_username.Text, txt_password.Text, txt_email.Text, txt_telephone.Text, cmb_role.Text, txt_nom.Text, txt_prenom.Text);
                     txt_username.Clear();
                     txt_password.Clear();
                     txt_nom.Clear();

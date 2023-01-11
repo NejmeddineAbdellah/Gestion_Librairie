@@ -111,7 +111,7 @@ namespace Gestion_Librairie
             string id_categorie = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[0].Value);
 
 
-            DialogResult dialogDelete = MessageBox.Show("voulez-vous vraiment supprimer ce Livre", "Supprimer un Livre", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            DialogResult dialogDelete = MessageBox.Show("voulez-vous vraiment supprimer cette categorie", "Supprimer une categorie", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (dialogDelete == DialogResult.OK)
             {
                 cnx.connexion();

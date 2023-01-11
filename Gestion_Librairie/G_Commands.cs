@@ -23,7 +23,7 @@ namespace Gestion_Librairie
 
             cnx.connexion();
             cnx.cnxOpen();
-            MySqlCommand Command = new MySqlCommand("select * from commands", cnx.connMaster);
+            MySqlCommand Command = new MySqlCommand("select * from command", cnx.connMaster);
             Command.ExecuteNonQuery();
             dt = new DataTable();
             da = new MySqlDataAdapter(Command);
@@ -37,7 +37,7 @@ namespace Gestion_Librairie
 
             cnx.connexion();
             cnx.cnxOpen();
-            MySqlCommand Command = new MySqlCommand("select * from produits", cnx.connMaster);
+            MySqlCommand Command = new MySqlCommand("select * from produit", cnx.connMaster);
             Command.ExecuteNonQuery();
             dt = new DataTable();
             da = new MySqlDataAdapter(Command);
@@ -48,6 +48,11 @@ namespace Gestion_Librairie
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
         {
 
         }
