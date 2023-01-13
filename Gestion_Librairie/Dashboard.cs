@@ -6,76 +6,59 @@ namespace Gestion_Librairie
     public partial class Dashboard : Form
     {
 
+        public static string userRole;
 
-        public Dashboard()
+        public Dashboard(string role)
         {
             InitializeComponent();
 
-            g_Dashboard3.Show();
-            g_Categories3.Hide();
-            g_Produits3.Hide();
-            g_Commands3.Hide();
-            g_Users3.Hide();
+            g_Categories1.Hide();
+            userRole= role;
 
-
+            if (userRole.Equals("Manager"))
+            {
+                btn_nav_user.Enabled = true;
+            }else btn_nav_user.Enabled = false;
+            //  guna2HtmlLabel1.Text= role;
         }
 
-        private void btn_exit_Click(object sender, EventArgs e)
+        private void guna2PictureBox2_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
+            Login log = new Login();
+            log.Show();
+            this.Hide();
         }
 
-        private void guna2PictureBox2_Click(object sender, EventArgs e)
+        private void btn_exit_Click_1(object sender, EventArgs e)
         {
-            Application.Exit();
+            Login log = new Login();
+            log.Show();
+            this.Hide();
+        }
+ 
+        private void btn_nav_categorie_Click_1(object sender, EventArgs e)
+        {
+            g_Categories1.Show();
         }
 
         private void btn_nav_user_Click(object sender, EventArgs e)
         {
-            g_Dashboard3.Hide();
-            g_Categories3.Hide();
-            g_Produits3.Hide();
-            g_Commands3.Hide();
-            g_Users3.Show();
-
 
         }
 
         private void btn_nav_produit_Click(object sender, EventArgs e)
         {
-            g_Dashboard3.Hide();
-            g_Categories3.Hide();
-            g_Produits3.Show();
-            g_Commands3.Hide();
-            g_Users3.Hide();
-        }
 
-        private void btn_nav_categorie_Click(object sender, EventArgs e)
-        {
-            g_Dashboard3.Hide();
-            g_Categories3.Show();
-            g_Produits3.Hide();
-            g_Commands3.Hide();
-            g_Users3.Hide();
         }
 
         private void btn_nav_command_Click(object sender, EventArgs e)
         {
-            g_Dashboard3.Hide();
-            g_Categories3.Hide();
-            g_Produits3.Hide();
-            g_Commands3.Show();
-            g_Users3.Hide();
+
         }
 
         private void guna2CirclePictureBox1_Click(object sender, EventArgs e)
         {
-            g_Dashboard3.Show();
-            g_Categories3.Hide();
-            g_Produits3.Hide();
-            g_Commands3.Hide();
-            g_Users3.Hide();
-        }
 
+        }
     }
 }

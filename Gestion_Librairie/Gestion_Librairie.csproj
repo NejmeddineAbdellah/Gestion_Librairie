@@ -75,6 +75,7 @@
     </Reference>
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -113,11 +114,17 @@
     <Compile Include="G_Commands.Designer.cs">
       <DependentUpon>G_Commands.cs</DependentUpon>
     </Compile>
-    <Compile Include="G_form\categorieforme.cs">
+    <Compile Include="G_form\DetailProduit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="G_form\categorieforme.Designer.cs">
-      <DependentUpon>categorieforme.cs</DependentUpon>
+    <Compile Include="G_form\DetailProduit.Designer.cs">
+      <DependentUpon>DetailProduit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="G_form\G_produitDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="G_form\G_produitDetail.Designer.cs">
+      <DependentUpon>G_produitDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="G_Produits.cs">
       <SubType>UserControl</SubType>
@@ -154,8 +161,11 @@
     <EmbeddedResource Include="G_Commands.resx">
       <DependentUpon>G_Commands.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="G_form\categorieforme.resx">
-      <DependentUpon>categorieforme.cs</DependentUpon>
+    <EmbeddedResource Include="G_form\DetailProduit.resx">
+      <DependentUpon>DetailProduit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="G_form\G_produitDetail.resx">
+      <DependentUpon>G_produitDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="G_Produits.resx">
       <DependentUpon>G_Produits.cs</DependentUpon>

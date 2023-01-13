@@ -1,5 +1,6 @@
 ﻿using Gestion_Librairie.Classes;
 using Gestion_Librairie.Connection;
+using Guna.UI2.WinForms;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
@@ -36,14 +37,10 @@ namespace Gestion_Librairie
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            /*   categorieforme gf = new categorieforme();
-               gf.Show();
-            */
-
-
+          
             if (guna2TextBox3.Text == "" || guna2TextBox2.Text == "")
             {
-                DialogResult dialogClose = MessageBox.Show("Veuillez renseigner tous les champs", "Champs requis", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                DialogResult dialogClose = MessageBox.Show("Veuillez renseigner tous les champs2222", "Champs requis", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
@@ -63,40 +60,6 @@ namespace Gestion_Librairie
                     GetCategorieList();
                     cnx.cnxClose();
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
-        private void G_Categories_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void guna2Button2_Click(object sender, EventArgs e)
-        {
-            if (guna2TextBox2.Text == "" || guna2TextBox3.Text == "")
-            {
-                DialogResult dialogClose = MessageBox.Show("Veuillez renseigner tous les champs", "Champs requis", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                try
-                {
-                    int id_categorie = Convert.ToInt32(guna2DataGridView1.SelectedRows[0].Cells[0].Value);
-
-                    cnx.connexion();
-                    cnx.cnxOpen();
-                    MySqlCommand cmd = new MySqlCommand("update categorie set code=@code ,libelle =@libelle where id = @id", cnx.connMaster);
-                    cmd.Parameters.AddWithValue("@code", guna2TextBox2.Text);
-                    cmd.Parameters.AddWithValue("@libelle", guna2TextBox3.Text);
-                    cmd.Parameters.AddWithValue("@id", id_categorie);
-                    cmd.ExecuteNonQuery();
-                    GetCategorieList();
-                    cnx.cnxClose();
                 }
                 catch (Exception ex)
                 {
@@ -146,6 +109,59 @@ namespace Gestion_Librairie
             guna2DataGridView1.DataSource = dt;
             cnx.cnxClose();
 
+        }
+
+        private void guna2Button5_Click(object sender, EventArgs e)
+        {
+            guna2TextBox1.Clear();
+            guna2TextBox1.PlaceholderText = "Libelle";
+            guna2TextBox2.Clear();
+            guna2TextBox2.PlaceholderText = "Code";
+            guna2TextBox3.Clear();
+            guna2TextBox3.PlaceholderText = "Libelle";
+        }
+
+        private void guna2TextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            cnx.connexion();
+            cnx.cnxOpen();
+            MySqlCommand Command = new MySqlCommand("select * from categorie where libelle like '%" + guna2TextBox1.Text + "%';", cnx.connMaster);
+            Command.ExecuteNonQuery();
+            dt = new DataTable();
+            da = new MySqlDataAdapter(Command);
+            da.Fill(dt);
+            guna2DataGridView1.DataSource = dt;
+            cnx.cnxClose();
+        }
+
+        private void btn_update_categorie_Click(object sender, EventArgs e)
+        {
+
+            if (guna2TextBox2.Text == "" || guna2TextBox3.Text == "")
+            {
+                DialogResult dialogClose = MessageBox.Show("Veuillez renseigner tous les champs", "Champs requis", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                try
+                {
+                    int id_categorie = Convert.ToInt32(guna2DataGridView1.SelectedRows[0].Cells[0].Value);
+
+                    cnx.connexion();
+                    cnx.cnxOpen();
+                    MySqlCommand cmd = new MySqlCommand("update categorie set code=@code ,libelle =@libelle where id = @id", cnx.connMaster);
+                    cmd.Parameters.AddWithValue("@code", guna2TextBox2.Text);
+                    cmd.Parameters.AddWithValue("@libelle", guna2TextBox3.Text);
+                    cmd.Parameters.AddWithValue("@id", id_categorie);
+                    cmd.ExecuteNonQuery();
+                    GetCategorieList();
+                    cnx.cnxClose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
     }
 }

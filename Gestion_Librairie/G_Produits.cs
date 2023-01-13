@@ -1,5 +1,6 @@
 ﻿using Gestion_Librairie.Classes;
 using Gestion_Librairie.Connection;
+using Gestion_Librairie.G_form;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
@@ -17,6 +18,8 @@ namespace Gestion_Librairie
         DataTable dt;
         DataTable dta;
         Byte[] img;
+
+        private static int id_produit;
 
 
         public G_Produits()
@@ -71,6 +74,7 @@ namespace Gestion_Librairie
             dta = new DataTable();
             dap = new MySqlDataAdapter(Command);
             dap.Fill(dta);
+            dta = dta.DefaultView.ToTable(true, "id", "nom", "reference", "quantite", "prix", "categorie", "description");
             guna2DataGridView1.DataSource = dta;
 
             cnx.cnxClose();
@@ -194,7 +198,7 @@ namespace Gestion_Librairie
 
         private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int id_produit = Convert.ToInt32(guna2DataGridView1.SelectedRows[0].Cells[0].Value);
+            id_produit = Convert.ToInt32(guna2DataGridView1.SelectedRows[0].Cells[0].Value);
             txt_nom.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[1].Value);
             txt_reference.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[2].Value);
             txt_stock.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[3].Value);
@@ -225,17 +229,25 @@ namespace Gestion_Librairie
         {
             GetProduitsList();
             txt_reference.Clear();
+            txt_reference.PlaceholderText = "Reference du produit";
             txt_nom.Clear();
+            txt_nom.PlaceholderText = "Nom du produit";
             txt_description.Clear();
             txt_prix.Clear();
+            txt_prix.PlaceholderText = "Prix";
             txt_stock.Clear();
+            txt_stock.PlaceholderText = "Quantite";
+            txt_recherche.Clear();
+            txt_recherche.PlaceholderText = "Reference";
+            guna2PictureBox1.Image=null;
+
         }
         private void guna2CirclePictureBox2_Click(object sender, EventArgs e)
         {
 
             cnx.connexion();
             cnx.cnxOpen();
-            MySqlCommand Command = new MySqlCommand("select * from produits where nom like '%" + txt_nom.Text + "%';", cnx.connMaster);
+            MySqlCommand Command = new MySqlCommand("select * from produit where nom like '%" + txt_recherche.Text + "%';", cnx.connMaster);
             Command.ExecuteNonQuery();
             dt = new DataTable();
             da = new MySqlDataAdapter(Command);
@@ -292,8 +304,17 @@ namespace Gestion_Librairie
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            DetailProduit g = new DetailProduit(id_produit);
+            g.ShowDialog();
+            
+          //  g_produitDetail1.Show();
+        }
+
     }
 }
