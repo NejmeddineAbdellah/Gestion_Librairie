@@ -33,7 +33,7 @@ namespace Gestion_Librairie
             cnx.cnxClose();
 
             guna2HtmlLabel7.Text= nb_categorie.ToString();
-            guna2HtmlLabel6.Text= nb_users.ToString();
+            //guna2HtmlLabel6.Text= nb_users.ToString();
 
             cnx.connexion();
             cnx.cnxOpen();
@@ -59,6 +59,21 @@ namespace Gestion_Librairie
             }
 
             cnx.cnxClose();
+
+            cnx.connexion();
+            cnx.cnxOpen();
+            MySqlCommand cmd3 = new MySqlCommand("select count(*) from user where role = 'Manager' " , cnx.connMaster);
+            Int32 totl_manager = Convert.ToInt32(cmd3.ExecuteScalar()); 
+          
+            cnx.cnxClose();
+            cnx.cnxOpen();
+            MySqlCommand cmd4 = new MySqlCommand("select count(*) from user where role = 'caissier' ", cnx.connMaster);
+            Int32 totl_caisser = Convert.ToInt32(cmd4.ExecuteScalar());
+
+            cnx.cnxClose();
+
+            this.chart3.Series["Users"].Points.AddXY("Manager", totl_manager);
+            this.chart3.Series["Users"].Points.AddXY("Caissier", totl_caisser);
 
         }
     }

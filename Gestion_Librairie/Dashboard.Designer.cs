@@ -333,9 +333,9 @@
             // 
             this.guna2PictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox1.Image")));
             this.guna2PictureBox1.ImageRotate = 0F;
-            this.guna2PictureBox1.Location = new System.Drawing.Point(8, 3);
+            this.guna2PictureBox1.Location = new System.Drawing.Point(25, 12);
             this.guna2PictureBox1.Name = "guna2PictureBox1";
-            this.guna2PictureBox1.Size = new System.Drawing.Size(69, 66);
+            this.guna2PictureBox1.Size = new System.Drawing.Size(45, 43);
             this.guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2PictureBox1.TabIndex = 8;
             this.guna2PictureBox1.TabStop = false;

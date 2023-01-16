@@ -3,6 +3,7 @@ using Gestion_Librairie.Connection;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Gestion_Librairie
@@ -202,7 +203,9 @@ namespace Gestion_Librairie
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            SqlServerTypes.Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);
+            printPreviewDialog1.Document= printDocument1;
+            printPreviewDialog1.ShowDialog();
+
 
         }
 
@@ -227,6 +230,39 @@ namespace Gestion_Librairie
 
             cnx.cnxClose();
             
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString("FACTURE", new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new Point(400, 10));
+            e.Graphics.DrawString("Rapport du facteur", new Font("Arial", 18, FontStyle.Bold), Brushes.Black, new Point(10, 40));
+
+            e.Graphics.DrawString("nom".ToString(), new Font("Arial", 15, FontStyle.Bold), Brushes.Gray, new Point(10, 150));
+            e.Graphics.DrawString("| Quantite".ToString(), new Font("Arial", 15, FontStyle.Bold), Brushes.Gray, new Point(500, 150));
+
+            e.Graphics.DrawString("________________________________________________________________________________________", new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new Point(10, 180));
+
+            cnx.connexion();
+            cnx.cnxOpen();
+            MySqlCommand Command = new MySqlCommand("select c.id, p.nom ,c.quantite from command c, produit p where c.produit_id=p.id order by c.quantite limit 5", cnx.connMaster);
+            MySqlDataReader dr = Command.ExecuteReader();
+            int i = 210;
+            while (dr.Read())
+            {
+
+                e.Graphics.DrawString("_________________________________________________________________________________________________________", new Font("Arial", 20, FontStyle.Bold), Brushes.Black, new Point(10, i));
+
+                e.Graphics.DrawString(dr["nom"].ToString(), new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(10, i+3));
+                e.Graphics.DrawString("|"+dr["quantite"].ToString(), new Font("Arial",13, FontStyle.Regular), Brushes.Black, new Point(500, i+3));
+
+                i +=30;
+
+            }
+
+            cnx.cnxClose();
+
+
+
         }
     }
 }
