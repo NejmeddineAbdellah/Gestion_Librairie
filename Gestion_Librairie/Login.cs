@@ -38,7 +38,7 @@ namespace Gestion_Librairie
 
             if (dt.Rows.Count == 1)
             {
-                Dashboard dashboard = new Dashboard(dt.Rows[0]["role"].ToString());
+                Dashboard dashboard = new Dashboard(dt.Rows[0]["role"].ToString(), dt.Rows[0]["nom"].ToString());
                 dashboard.ShowDialog();
                 this.Hide();
 

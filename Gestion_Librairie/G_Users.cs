@@ -80,9 +80,9 @@ namespace Gestion_Librairie
           
             txt_username.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[1].Value);
             txt_password.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[2].Value);
-            cmb_role.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[3].Value);
-            txt_nom.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[4].Value);
-            txt_prenom.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[5].Value);
+            txt_nom.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[3].Value);
+            txt_prenom.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[4].Value);
+            cmb_role.SelectedItem = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[5].Value);
             txt_email.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[6].Value);
             txt_telephone.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[7].Value);
         }
@@ -142,6 +142,20 @@ namespace Gestion_Librairie
 
         private void guna2CirclePictureBox2_Click(object sender, EventArgs e)
         {
+            cnx.connexion();
+            cnx.cnxOpen();
+            MySqlCommand Command = new MySqlCommand("select * from user where nom like '%" + txt_nom.Text + "%';", cnx.connMaster);
+            Command.ExecuteNonQuery();
+            dt = new DataTable();
+            da = new MySqlDataAdapter(Command);
+            da.Fill(dt);
+            guna2DataGridView1.DataSource = dt;
+            cnx.cnxClose();
+        }
+
+        private void txt_recherche_TextChanged(object sender, EventArgs e)
+        {
+
             cnx.connexion();
             cnx.cnxOpen();
             MySqlCommand Command = new MySqlCommand("select * from user where nom like '%" + txt_nom.Text + "%';", cnx.connMaster);

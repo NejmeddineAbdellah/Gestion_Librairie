@@ -10,14 +10,16 @@ namespace Gestion_Librairie.Classes
         private DateTime date_command;
         private int quantite;
         private string user_email;
+        private double total_prix;
 
-        public Commands(string client_email, int produit_id,DateTime date_command, int quantite, string user_email)
+        public Commands(string client_email, int produit_id, DateTime date_command, int quantite, string user_email, double total_prix)
         {
             this.Client_email = client_email;
             this.Produit_id = produit_id;
             this.Date_command = date_command;
             this.Quantite = quantite;
             this.User_email = user_email;
+            this.Total_prix = total_prix;
         }
 
         public int Id { get => id; set => id = value; }
@@ -26,5 +28,6 @@ namespace Gestion_Librairie.Classes
         public DateTime Date_command { get => date_command; set => date_command = value; }
         public int Quantite { get => quantite; set => quantite = value; }
         public string User_email { get => user_email; set => user_email = value; }
+        public double Total_prix { get => total_prix; set => total_prix = value; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Gestion_Librairie.Classes;
 using Gestion_Librairie.Connection;
-using Guna.UI2.WinForms;
 using MySql.Data.MySqlClient;
 using System;
 using System.Data;
@@ -37,7 +36,7 @@ namespace Gestion_Librairie
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-          
+
             if (guna2TextBox3.Text == "" || guna2TextBox2.Text == "")
             {
                 DialogResult dialogClose = MessageBox.Show("Veuillez renseigner tous les champs2222", "Champs requis", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -101,7 +100,7 @@ namespace Gestion_Librairie
         {
             cnx.connexion();
             cnx.cnxOpen();
-            MySqlCommand Command = new MySqlCommand("select * from categorie where libelle like '%"+ guna2TextBox1.Text+"%';", cnx.connMaster);
+            MySqlCommand Command = new MySqlCommand("select * from categorie where libelle like '%" + guna2TextBox1.Text + "%';", cnx.connMaster);
             Command.ExecuteNonQuery();
             dt = new DataTable();
             da = new MySqlDataAdapter(Command);
@@ -162,6 +161,11 @@ namespace Gestion_Librairie
                     MessageBox.Show(ex.Message);
                 }
             }
+        }
+
+        private void G_Categories_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

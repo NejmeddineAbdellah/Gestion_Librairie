@@ -81,6 +81,22 @@ namespace Gestion_Librairie
 
         }
 
+        public void ClearData()
+        {
+            txt_reference.Clear();
+            txt_reference.PlaceholderText = "Reference du produit";
+            txt_nom.Clear();
+            txt_nom.PlaceholderText = "Nom du produit";
+            txt_description.Clear();
+            txt_prix.Clear();
+            txt_prix.PlaceholderText = "Prix";
+            txt_stock.Clear();
+            txt_stock.PlaceholderText = "Quantite";
+            txt_recherche.Clear();
+            txt_recherche.PlaceholderText = "Reference";
+            guna2PictureBox1.Image = null;
+        }
+
         private void guna2Button1_Click(object sender, EventArgs e)
         {
 
@@ -116,11 +132,7 @@ namespace Gestion_Librairie
                     GetProduitsList();
                     cnx.cnxClose();
 
-                    txt_reference.Clear();
-                    txt_nom.Clear();
-                    txt_description.Clear();
-                    txt_prix.Clear();
-                    txt_stock.Clear();
+                    ClearData();
 
                 }
                 catch (Exception ex)
@@ -147,11 +159,7 @@ namespace Gestion_Librairie
                 GetCategorieList();
                 cnx.cnxClose();
 
-                txt_reference.Clear();
-                txt_nom.Clear();
-                txt_description.Clear();
-                txt_prix.Clear();
-                txt_stock.Clear();
+                ClearData();
             }
         }
 
@@ -183,11 +191,7 @@ namespace Gestion_Librairie
                     GetProduitsList();
                     GetCategorieList();
                     cnx.cnxClose();
-                    txt_reference.Clear();
-                    txt_nom.Clear();
-                    txt_description.Clear();
-                    txt_prix.Clear();
-                    txt_stock.Clear();
+                    ClearData();
                 }
                 catch (Exception ex)
                 {
@@ -203,7 +207,7 @@ namespace Gestion_Librairie
             txt_reference.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[2].Value);
             txt_stock.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[3].Value);
             txt_prix.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[4].Value);
-            cmb_categorie.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[5].Value);
+            cmb_categorie.SelectedItem = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[5].Value);
             txt_description.Text = Convert.ToString(guna2DataGridView1.SelectedRows[0].Cells[6].Value);
 
 
@@ -228,18 +232,7 @@ namespace Gestion_Librairie
         private void guna2Button5_Click(object sender, EventArgs e)
         {
             GetProduitsList();
-            txt_reference.Clear();
-            txt_reference.PlaceholderText = "Reference du produit";
-            txt_nom.Clear();
-            txt_nom.PlaceholderText = "Nom du produit";
-            txt_description.Clear();
-            txt_prix.Clear();
-            txt_prix.PlaceholderText = "Prix";
-            txt_stock.Clear();
-            txt_stock.PlaceholderText = "Quantite";
-            txt_recherche.Clear();
-            txt_recherche.PlaceholderText = "Reference";
-            guna2PictureBox1.Image=null;
+            ClearData();
 
         }
         private void guna2CirclePictureBox2_Click(object sender, EventArgs e)
@@ -255,11 +248,7 @@ namespace Gestion_Librairie
             guna2DataGridView1.DataSource = dt;
 
             cnx.cnxClose();
-            txt_reference.Clear();
-            txt_nom.Clear();
-            txt_description.Clear();
-            txt_prix.Clear();
-            txt_stock.Clear();
+            ClearData();
         }
 
         private void G_Produits_Load(object sender, EventArgs e)
@@ -312,8 +301,6 @@ namespace Gestion_Librairie
         {
             DetailProduit g = new DetailProduit(id_produit);
             g.ShowDialog();
-            
-          //  g_produitDetail1.Show();
         }
 
     }
